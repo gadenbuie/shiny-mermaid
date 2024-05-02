@@ -14,10 +14,14 @@ class MermaidOutputBinding extends Shiny.OutputBinding {
 
     const drawDiagram = async function(mermaidText) {
       const {svg} = await mermaid.render('mermaidText', mermaidText.diagram);
-      el.innerHTML = svg
+      // el.innerHTML = svg
+      return svg
     }
 
-    await drawDiagram(warhead);
+    const svg = await drawDiagram(warhead);
+    // Why doesn't this work??
+    // el.innerHTML = svg;
+    setTimeout(() => el.innerHTML = svg, 0)
   }
 }
 
