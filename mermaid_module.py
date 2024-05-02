@@ -20,7 +20,7 @@ class render_mermaid(Renderer[str]):
     """
 
     def auto_output_ui(self) -> Any:
-        return ui.output_mermaid
+        return ui.output_mermaid(self.output_name)
 
     async def transform(self, value: str) -> Jsonifiable:
         return {
