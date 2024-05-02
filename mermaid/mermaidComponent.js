@@ -16,7 +16,7 @@ class MermaidOutputBinding extends Shiny.OutputBinding {
   }
 
   async renderValue(el, payload) {
-    const {svg} = await mermaid.render(el.id + "_svg", payload.diagram)
+    const { svg } = await mermaid.render(el.id + "_svg", payload.diagram)
     el.innerHTML = svg;
   }
 }
