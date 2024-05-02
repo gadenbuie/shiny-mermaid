@@ -2,12 +2,11 @@ from shiny import App, ui
 from mermaid_module import mermaid_diagram_ui, mermaid_diagram_server
 
 
-app_ui = ui.page_navbar(  
-    ui.nav_panel("A", mermaid_diagram_ui("diagramA")),  
-    ui.nav_panel("B", mermaid_diagram_ui("diagramB")),  
-    ui.nav_panel("C", mermaid_diagram_ui("diagramC")),  
-    title="Mermaid Test App",  
-    id="page",  
+app_ui = ui.page_fixed(  
+    mermaid_diagram_ui("diagramA"),  
+    mermaid_diagram_ui("diagramB"),
+    mermaid_diagram_ui("diagramC"),
+    title="Mermaid Test App"
 )  
 
 
