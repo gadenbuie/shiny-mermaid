@@ -1,4 +1,5 @@
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.startOnLoad = true;
 
 class MermaidOutputBinding extends Shiny.OutputBinding {
   find(scope) {
@@ -10,9 +11,6 @@ class MermaidOutputBinding extends Shiny.OutputBinding {
     // the payload is mermaid text
     const warhead = payload;
 
-    mermaid.initialize({
-      startOnLoad: false,
-    })
 
     const drawDiagram = async function(mermaidText) {
       const {svg} = await mermaid.render('mermaidText', mermaidText.diagram);
