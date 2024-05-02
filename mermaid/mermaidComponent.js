@@ -1,5 +1,7 @@
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-mermaid.startOnLoad = true;
+
+let config = { startOnLoad: true, flowchart: { useMaxWidth: false, htmlLabels: true } };
+mermaid.initialize(config);
 
 async function drawDiagram(mermaidText) {
   const {svg} = await mermaid.render('mermaidText', mermaidText.diagram);
@@ -17,7 +19,7 @@ class MermaidOutputBinding extends Shiny.OutputBinding {
     const warhead = payload;
   
     const svg = await drawDiagram(warhead);
-    
+
     // Why doesn't this work??
     // el.innerHTML = svg;
     setTimeout(() => el.innerHTML = svg, 0)
