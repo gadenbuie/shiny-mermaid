@@ -1,25 +1,23 @@
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
 
+let config = { 
+  startOnLoad: true,
+  flowchart: { 
+    useMaxWidth: false,
+    htmlLabels: true 
+  } 
+};
+
+mermaid.initialize(config);
+
 class MermaidOutputBinding extends Shiny.OutputBinding {
   find(scope) {
     return scope.find(".shiny-mermaid-output");
   }
 
   async renderValue(el, payload) {
-
-    // the payload is mermaid text
-    const warhead = payload;
-
-    mermaid.initialize({
-      startOnLoad: false,
-    })
-
-    const drawDiagram = async function(mermaidText) {
-      const {svg} = await mermaid.render('mermaidText', mermaidText.diagram);
-      el.innerHTML = svg
-    }
-
-    await drawDiagram(warhead);
+    const { svg } = await mermaid.render(el.id + "_svg", payload.diagram)
+    el.innerHTML = svg;
   }
 }
 
